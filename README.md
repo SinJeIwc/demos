@@ -47,16 +47,20 @@ src/
     home/, hotel/
   widgets/                — крупные секции страниц, сгруппированы по сайтам
     home/                 — header, showcase
-    hotel/                — navbar, hero, story, rooms, amenities, experiences,
-                            gallery, booking, location, footer, messenger-dock
+    hotel/                — navbar, hero, story, rooms, amenities, …
+    clinic/               — navbar, hero, services, results, steps, doctors, …
+    restaurant/           — navbar, hero, story, menu, gallery, reservation, …
+    beauty/               — navbar, hero, services, masters, works, booking, …
   features/               — действия пользователя
-    hotel/booking/        — форма брони и отправка заявки в мессенджер
-    locale-switcher/      — переключение RU/EN (общая для всех сайтов)
-  entities/               — бизнес-сущности и их контент
-    hotel/                — данные отеля, типы, знак-тундук
-    demo/                 — реестр демо для главной
+    hotel/booking/        — бронь номера с диапазоном дат
+    appointment/          — универсальная запись: услуга, специалист или гости,
+                            дата, время → WhatsApp/Telegram (клиника, ресторан, салон)
+    locale-switcher/      — переключение RU/EN
+  entities/               — контент каждого бизнеса на двух языках и его знак
+    hotel/, clinic/, restaurant/, beauty/, demo/ (реестр для главной)
   shared/                 — переиспользуемое без бизнес-логики
-    ui/ (icons, brand), lib/, i18n/, config/
+    ui/                   — icons, brand, demo-navbar, messenger-dock, compare-slider
+    lib/, i18n/, config/
 ```
 
 Правила: слой импортирует только слои ниже себя (`views → widgets → features → entities → shared`),
@@ -68,6 +72,16 @@ src/
 
 **Новый бизнес:** `entities/<бизнес>` → `widgets/<бизнес>/<секция>` (и `features/<бизнес>/…`, если нужны) → `views/<бизнес>` →
 роут `src/app/[locale]/<slug>/page.tsx` → запись в `src/entities/demo/model/registry.ts`.
+
+## Темы и шрифты сайтов
+
+У каждого демо свои цвета: класс `.theme-<сайт>` в `globals.css` задаёт токены
+`site-bg`, `site-ink`, `site-accent` и т. д., а компоненты пишут `bg-site-bg`, `text-site-ink`.
+Общие компоненты (шапка, форма записи) поэтому сами подстраиваются под сайт.
+Шрифт заголовков подключается в `src/app/[locale]/<сайт>/layout.tsx` и доступен как `.font-site`.
+
+Двуязычный контент пишется одним объектом с `tx("рус", "eng")`, а `localize(content, locale)`
+оставляет нужный язык (`src/shared/i18n/localize.ts`).
 
 ## Как работает бронь
 

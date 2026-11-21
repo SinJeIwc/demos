@@ -6,7 +6,7 @@ import { LOCALE_COOKIE, localeNames, locales, localeShort, switchLocalePath, use
 import { cn } from "@/shared/lib/cn";
 
 /** Переключатель RU / EN. Запоминает выбор в cookie, чтобы middleware открывал его по умолчанию. */
-export function LocaleSwitcher({ className, tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
+export function LocaleSwitcher({ className, tone = "dark" }: { className?: string; tone?: "dark" | "light" | "site" }) {
   const { locale, t } = useI18n();
   const pathname = usePathname() ?? `/${locale}`;
 
@@ -19,7 +19,7 @@ export function LocaleSwitcher({ className, tone = "dark" }: { className?: strin
       aria-label={t.common.language}
       className={cn(
         "flex items-center rounded-full p-1 text-xs font-medium",
-        tone === "dark" ? "bg-snow/10 text-snow" : "bg-ink/5 text-ink",
+        tone === "dark" ? "bg-snow/10 text-snow" : tone === "site" ? "bg-current/10" : "bg-ink/5 text-ink",
         className,
       )}
     >
@@ -40,7 +40,9 @@ export function LocaleSwitcher({ className, tone = "dark" }: { className?: strin
               active
                 ? tone === "dark"
                   ? "bg-snow text-ink"
-                  : "bg-ink text-snow"
+                  : tone === "site"
+                    ? "bg-site-ink text-site-bg"
+                    : "bg-ink text-snow"
                 : "opacity-70 hover:opacity-100",
             )}
           >

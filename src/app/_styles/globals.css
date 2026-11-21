@@ -19,6 +19,57 @@
   --font-sans: var(--font-onest), ui-sans-serif, system-ui;
 
   --ease-lake: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Токены отдельного демо-сайта: значения задаёт класс .theme-<сайт> ниже */
+  --color-site-bg: var(--site-bg);
+  --color-site-surface: var(--site-surface);
+  --color-site-ink: var(--site-ink);
+  --color-site-muted: var(--site-muted);
+  --color-site-line: var(--site-line);
+  --color-site-accent: var(--site-accent);
+  --color-site-accent-ink: var(--site-accent-ink);
+  --color-site-alt: var(--site-alt);
+}
+
+/* Стоматология «Ак Тиш»: фарфор, глубокий синий и мятная эмаль */
+.theme-clinic {
+  --site-bg: #f3f6f7;
+  --site-surface: #ffffff;
+  --site-ink: #0f2340;
+  --site-muted: #5f6f82;
+  --site-line: #dde4ea;
+  --site-accent: #0f2340;
+  --site-accent-ink: #ffffff;
+  --site-alt: #8fd9c4;
+}
+
+/* Ресторан «Тамыр»: тёмный орех, шафран и зелень */
+.theme-restaurant {
+  --site-bg: #1f1611;
+  --site-surface: #2a1e17;
+  --site-ink: #f1e6d6;
+  --site-muted: #b9a68f;
+  --site-line: #4a382b;
+  --site-accent: #e2a33b;
+  --site-accent-ink: #1f1611;
+  --site-alt: #8fae7a;
+}
+
+/* Салон «Кыял»: сиреневый дым, слива и лаймовый акцент */
+.theme-beauty {
+  --site-bg: #ece7f1;
+  --site-surface: #f8f5fa;
+  --site-ink: #35193a;
+  --site-muted: #7d6a83;
+  --site-line: #d8cfe0;
+  --site-accent: #35193a;
+  --site-accent-ink: #f8f5fa;
+  --site-alt: #d9e66b;
+}
+
+/* Шрифт заголовков демо-сайта задаётся в layout его роута */
+.font-site {
+  font-family: var(--font-site), var(--font-sans);
 }
 
 @layer base {
@@ -109,6 +160,14 @@ html.lenis body {
   --rdp-day_button-height: 2.5rem;
   --rdp-day_button-width: 2.5rem;
   font-family: var(--font-sans);
+}
+[class*="theme-"] .rdp-root {
+  --rdp-accent-color: var(--site-ink);
+  --rdp-accent-background-color: color-mix(in oklab, var(--site-alt) 35%, transparent);
+  --rdp-today-color: var(--site-accent);
+}
+.theme-restaurant .rdp-root {
+  --rdp-accent-color: var(--site-accent);
 }
 .rdp-caption_label {
   font-family: var(--font-display);

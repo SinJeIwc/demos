@@ -11,3 +11,4 @@ export { getDictionary } from "./get-dictionary";
 export type { Dictionary } from "./dictionaries/ru";
 export { I18nProvider, useI18n } from "./provider";
 export { languageAlternates, localePath, switchLocalePath } from "./routing";
+export { localize, tx, type L, type Localized } from "./localize";
