@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { hotel } from "../config";
 import { useBooking } from "../booking-context";
+import { HotelMark } from "./hotel-mark";
+import { AraweareLogo } from "@/components/brand/logo";
 
 export function Footer() {
   const { openBooking } = useBooking();
@@ -34,9 +36,12 @@ export function Footer() {
         </motion.p>
 
         <div className="flex flex-col gap-3 border-t border-snow/10 py-8 text-sm text-mist/50 sm:flex-row sm:justify-between">
-          <span>Демо-сайт. Название, цены и контакты вымышленные. Фото: Unsplash.</span>
-          <Link href="/demos" className="hover:text-snow">
-            Посмотреть другие демо
+          <span className="flex items-center gap-3">
+            <HotelMark className="size-5 text-mist/60" />
+            Демо-сайт. Название, цены и контакты вымышленные. Фото: Unsplash.
+          </span>
+          <Link href="/demos" className="flex items-center gap-2 hover:text-snow">
+            Сделано в <AraweareLogo className="[&_svg]:size-6 [&>span:last-child]:text-base" />
           </Link>
         </div>
       </div>

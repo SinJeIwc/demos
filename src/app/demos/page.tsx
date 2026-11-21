@@ -3,23 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { demos } from "@/demos/registry";
 import { IconArrow } from "@/components/icons/ui";
+import { AraweareLogo } from "@/components/brand/logo";
 
 // Страница собирается один раз при сборке и раздаётся с CDN
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Демо-сайты — araweare",
+  alternates: { canonical: "/demos" },
 };
 
 export default function DemosHub() {
   return (
     <main className="grain min-h-dvh bg-ink text-snow">
-      <div className="mx-auto max-w-6xl px-5 pb-24 pt-16 sm:px-8 sm:pt-24">
-        <p className="flex items-center gap-3 text-sm text-shallow">
-          <span className="felt-diamond" aria-hidden />
-          Демо-сайты от araweare
-        </p>
-        <h1 className="display-tight mt-6 max-w-4xl text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-light">
+      <div className="mx-auto max-w-6xl px-5 pb-24 pt-8 sm:px-8 sm:pt-10">
+        <header className="flex items-center justify-between">
+          <AraweareLogo />
+          <span className="text-sm text-mist/60">Демо-сайты</span>
+        </header>
+        <h1 className="display-tight mt-16 sm:mt-24 max-w-4xl text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-light">
           Посмотрите, как может выглядеть сайт вашего бизнеса
         </h1>
         <p className="mt-6 max-w-xl text-lg text-mist/80">

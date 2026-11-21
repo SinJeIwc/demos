@@ -8,10 +8,11 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: `${hotel.fullName} — отель на Иссык-Куле`,
   description: hotel.hero.lead,
+  alternates: { canonical: "/hotel" },
   openGraph: {
     title: hotel.fullName,
     description: hotel.hero.lead,
-    images: [`${hotel.hero.image}?auto=format&fit=crop&w=1200&q=80`],
+    url: "/hotel",
   },
 };
 

@@ -6,6 +6,7 @@ import "react-day-picker/style.css";
 import "./globals.css";
 import { preconnect } from "react-dom";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 // Только те начертания, что реально используются: меньше файлов шрифтов
 const unbounded = Unbounded({
@@ -22,8 +23,17 @@ const onest = Onest({
 });
 
 export const metadata: Metadata = {
-  title: { default: "araweare — сайты для бизнеса", template: "%s" },
-  description: "Демо-сайты для отелей, клиник, ресторанов и салонов: посмотрите, как может выглядеть ваш.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: `${SITE_NAME} — сайты для бизнеса`, template: "%s" },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "ru_RU",
+  },
+  twitter: { card: "summary_large_image" },
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
@@ -32,7 +42,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // Заранее открываем соединение с CDN фотографий — первая картинка приходит быстрее
-  preconnect("https://images.unsplash.com", { crossOrigin: "anonymous" });
+  preconnect("https://images.unsplash.com");
 
   return (
     <html lang="ru" className={`${unbounded.variable} ${onest.variable}`}>

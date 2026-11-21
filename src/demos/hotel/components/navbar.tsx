@@ -7,6 +7,7 @@ import { IconClose, IconMenu } from "@/components/icons/ui";
 import { cn } from "@/lib/cn";
 import { hotel } from "../config";
 import { useBooking } from "../booking-context";
+import { HotelMark } from "./hotel-mark";
 
 const links = [
   { href: "#rooms", label: "Номера" },
@@ -48,7 +49,8 @@ export function Navbar() {
             solid ? "bg-ink/80 text-snow shadow-lg shadow-ink/20 backdrop-blur-xl" : "bg-transparent text-snow",
           )}
         >
-          <button onClick={() => go("#top")} className="flex items-baseline gap-2" aria-label="Наверх">
+          <button onClick={() => go("#top")} className="flex items-center gap-2.5" aria-label="Наверх">
+            <HotelMark className="size-7" />
             <span className="font-display text-lg font-medium tracking-tight">{hotel.name}</span>
             <span className="hidden text-xs text-shallow sm:inline">lake house</span>
           </button>
