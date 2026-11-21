@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/shared/config/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -7,6 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: SITE_NAME,
     description: SITE_DESCRIPTION,
     start_url: "/",
+    scope: "/",
     display: "standalone",
     background_color: "#0d2830",
     theme_color: "#0d2830",

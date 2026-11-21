@@ -1,18 +1,22 @@
 import type { MetadataRoute } from "next";
-import { demos } from "@/demos/registry";
-import { SITE_URL } from "@/lib/site";
+import { liveDemos } from "@/entities/demo";
+import { SITE_URL } from "@/shared/config/site";
+import { locales, localePath } from "@/shared/i18n";
 
+/** Каждая страница на обоих языках, со ссылками друг на друга (hreflang) */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return [
-    { url: `${SITE_URL}/demos`, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    ...demos
-      .filter((d) => d.status === "live")
-      .map((d) => ({
-        url: `${SITE_URL}/${d.slug}`,
-        lastModified: now,
-        changeFrequency: "monthly" as const,
-        priority: 0.8,
-      })),
-  ];
+  const paths = ["/", ...liveDemos().map((d) => `/${d.slug}`)];
+
+  return paths.flatMap((path) =>
+    locales.map((locale) => ({
+      url: `${SITE_URL}${localePath(locale, path)}`,
+      lastModified: now,
+      changeFrequency: path === "/" ? ("weekly" as const) : ("monthly" as const),
+      priority: path === "/" ? 1 : 0.8,
+      alternates: {
+        languages: Object.fromEntries(locales.map((l) => [l, `${SITE_URL}${localePath(l, path)}`])),
+      },
+    })),
+  );
 }

@@ -1,0 +1,123 @@
+import type { Dictionary } from "./ru";
+
+export const en: Dictionary = {
+  common: {
+    book: "Book now",
+    toHome: "Home",
+    toTop: "Back to top",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    close: "Close",
+    writeUs: "Message us",
+    hideMessengers: "Hide messengers",
+    madeBy: "Made by",
+    language: "Language",
+  },
+
+  home: {
+    metaTitle: "araweare — websites for business",
+    metaDescription:
+      "Websites for hotels, clinics, restaurants and salons that send leads straight to WhatsApp and Telegram. See the demos.",
+    label: "Demo websites",
+    title: "See what your business website could look like",
+    lead: "Every example is a ready website that sends requests to WhatsApp and Telegram. Pick your industry and open the demo.",
+    soon: "Coming soon",
+    openDemo: "Open demo",
+  },
+
+  notFound: {
+    title: "This page doesn’t exist",
+    text: "The link may be outdated. All our examples are on the home page.",
+    cta: "Go to home page",
+  },
+
+  hotel: {
+    nav: {
+      rooms: "Rooms",
+      amenities: "Amenities",
+      experiences: "Experiences",
+      gallery: "Gallery",
+      location: "Getting here",
+    },
+    hero: {
+      photoAlt: "Turquoise lake and snowy mountains",
+      datesLabel: "Travel dates",
+      datesValue: "Choose check-in and check-out",
+      roomsLabel: "Rooms",
+      fromPerNight: (price: string, currency: string) => `from ${price} ${currency} per night`,
+      cta: "Check dates",
+    },
+    story: {
+      photoAlt: "Lake among green mountains",
+      scrollHint: "Scroll to see the lake through the tunduk",
+    },
+    rooms: {
+      title: "Three ways to wake up by the water",
+      lead: "Nightly rates include breakfast. In summer, book a month ahead — there are only twelve rooms.",
+      fromPrice: (price: string, currency: string) => `from ${price} ${currency} / night`,
+      area: (m: number) => `${m} m²`,
+      upToGuests: (n: number) => `up to ${n} guests`,
+      bookThis: "Book this room",
+      ask: "Ask",
+      askMessage: (room: string) => `Hello! Is the “${room}” available for my dates?`,
+    },
+    amenities: { title: "Everything you need without leaving the grounds" },
+    experiences: { title: "Things to do on Issyk-Kul", hint: "Drag the cards sideways" },
+    gallery: { title: "What a day here looks like", open: (alt: string) => `Open photo: ${alt}` },
+    location: { title: "Getting here", map: (name: string) => `Map: ${name}` },
+    footer: {
+      lead: "Summer on Issyk-Kul is short. Pick your dates now — we confirm bookings within 15 minutes.",
+      disclaimer: "Demo website. Name, prices and contacts are fictional. Photos: Unsplash.",
+    },
+    dock: { waMessage: "Hello! I’d like to ask about available rooms." },
+  },
+
+  booking: {
+    title: "Booking",
+    lead: "Choose dates and a room — your request goes to the front desk on WhatsApp or Telegram. We reply within 15 minutes, 8:00–23:00.",
+    dates: "Dates",
+    room: "Room",
+    guests: "Guests",
+    adults: "Adults",
+    adultsHint: "14 and older",
+    kids: "Children",
+    kidsHint: "under 14",
+    decrease: (label: string) => `Decrease: ${label}`,
+    increase: (label: string) => `Increase: ${label}`,
+    tooMany: (n: number) =>
+      `This room fits up to ${n} guests. Choose the family cottage or message us and we’ll find an option.`,
+    contacts: "Contacts",
+    name: "Name",
+    phone: "Phone",
+    phonePlaceholder: "Phone, e.g. +996 555 123 456",
+    note: "Requests",
+    notePlaceholder: "Requests: transfer, baby cot, late check-in",
+    noDates: "no dates selected",
+    nights: (n: number) => `${n} ${n === 1 ? "night" : "nights"}`,
+    totalNote: "Final price is confirmed by the front desk, payment on arrival",
+    sendWhatsApp: "Send via WhatsApp",
+    sendTelegram: "Send via Telegram",
+    errors: {
+      dates: "Choose check-in and check-out dates in the calendar",
+      name: "Enter your name",
+      phone: "Enter your phone number so we can call you back",
+    },
+    toast: {
+      whatsapp: "Your request is open in WhatsApp — just press Send",
+      telegramCopied: "Request copied — paste it into the Telegram chat",
+      telegramFallback: "Opening Telegram — send us your dates and number of guests",
+    },
+    message: {
+      hello: (hotel: string) => `Hello! I’d like to book at “${hotel}”.`,
+      room: "Room",
+      dates: "Dates",
+      guests: (adults: number, kids: number) =>
+        `${adults} adult${adults === 1 ? "" : "s"}${kids ? `, ${kids} child${kids === 1 ? "" : "ren"}` : ""}`,
+      guestsLabel: "Guests",
+      name: "Name",
+      phone: "Phone",
+      note: "Requests",
+      total: "Estimated total",
+    },
+  },
+};

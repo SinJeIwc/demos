@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     // Все фото берём с Unsplash через свой загрузчик: он сам подставляет нужную ширину.
     loader: "custom",
-    loaderFile: "./src/lib/image-loader.ts",
+    loaderFile: "./src/shared/lib/image-loader.ts",
   },
 };
 
