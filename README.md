@@ -45,11 +45,13 @@ src/
   middleware.ts           — выбор языка
   views/                  — страницы целиком (слой pages в FSD)
     home/, hotel/
-  widgets/                — крупные секции страниц
-    site-header, demo-showcase, hotel-hero, hotel-rooms, hotel-booking, ...
+  widgets/                — крупные секции страниц, сгруппированы по сайтам
+    home/                 — header, showcase
+    hotel/                — navbar, hero, story, rooms, amenities, experiences,
+                            gallery, booking, location, footer, messenger-dock
   features/               — действия пользователя
-    hotel-booking/        — форма брони и отправка заявки в мессенджер
-    locale-switcher/      — переключение RU/EN
+    hotel/booking/        — форма брони и отправка заявки в мессенджер
+    locale-switcher/      — переключение RU/EN (общая для всех сайтов)
   entities/               — бизнес-сущности и их контент
     hotel/                — данные отеля, типы, знак-тундук
     demo/                 — реестр демо для главной
@@ -58,12 +60,13 @@ src/
 ```
 
 Правила: слой импортирует только слои ниже себя (`views → widgets → features → entities → shared`),
-а другие слайсы — только через их `index.ts`.
+а другие слайсы — только через их `index.ts`. Папки `widgets/hotel`, `widgets/home`,
+`features/hotel` — группы слайсов одного сайта, внутри них короткие имена: `hero`, `rooms` и т. д.
 
 **Сайт под реального клиента:** поменять `src/entities/hotel/config/tengiz.ts`
 (название, контакты, номера, цены, фото на двух языках). Разметку трогать не нужно.
 
-**Новый бизнес:** `entities/<бизнес>` → `widgets/<бизнес>-*` → `views/<бизнес>` →
+**Новый бизнес:** `entities/<бизнес>` → `widgets/<бизнес>/<секция>` (и `features/<бизнес>/…`, если нужны) → `views/<бизнес>` →
 роут `src/app/[locale]/<slug>/page.tsx` → запись в `src/entities/demo/model/registry.ts`.
 
 ## Как работает бронь
